@@ -4,56 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kék Duna túra</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
-<body class="bg-day01">
-
+<body>
 <div class="page">
-
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
         <div class="title">Kék Duna túra</div>
         <div class="subtitle">Főoldal</div>
       </div>
+      <div class="btnrow">
+        <a class="btn btn-accent" href="day01/index.html">DAY01 lista</a>
+      </div>
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="container">
-
     <div class="card">
-      <div class="h1">Motoros túra – napok szerint</div>
-      <div class="small">
-        Válassz napot a részletes útitervhez.
+      <div class="h1">Útiterv</div>
+      <div class="p">Itt a napok belépő oldala van. Minden napon belül van lista nézet, és minden helyszínnek külön oldala.</div>
+      <div class="notice">
+        Képek helye: <b>day01/images</b><br>
+        A projekt ezekkel a fájlnevekkel számol: Durnstein.jpg, fertoto.jpg, Kismarton.jpg, KremsanderDonau.jpg, Leithaprodersdorf.jpg, WachauCampingRossatz.jpg
       </div>
-    </div>
 
-    <div class="grid">
+      <div style="height:12px"></div>
 
-      <div class="poi">
-        <div class="poi-title">DAY01 – Fertő tó → Wachau</div>
-        <div class="poibtns">
-          <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
+      <div class="grid">
+        <div class="poi">
+          <div class="poi-head">
+            <div>
+              <div class="poi-title">DAY01 Fertő tó és Wachau</div>
+              <div class="coords">6 pont, kemping Rossatz</div>
+            </div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn"></span> GPS mérés</span>
+              <span class="badge"><span class="dot warn"></span> Dupla mérés jelzés</span>
+            </div>
+          </div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
+          </div>
         </div>
       </div>
-
-      <div class="poi">
-        <div class="poi-title">DAY02</div>
-        <div class="poibtns">
-          <a class="btn" href="day02/index.html">Megnyitás</a>
-        </div>
-      </div>
-
-      <!-- később DAY03… -->
 
     </div>
   </div>
 </div>
-
-<script src="assets/js/gps.js?v=2"></script>
-
 </body>
 </html>
