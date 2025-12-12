@@ -51,7 +51,7 @@ body {
   opacity: 0.8;
 }
 
-/* ===== BUTTONS – GLOBAL ===== */
+/* ===== BUTTONS ===== */
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -125,44 +125,6 @@ body {
   opacity: 0.8;
 }
 
-/* ===== BADGES ===== */
-.badges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 14px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.badge.gps {
-  background: rgba(255,179,0,0.15);
-  color: #ffb300;
-  border: 1px solid rgba(255,179,0,0.4);
-}
-
-.badge.double {
-  background: rgba(255,90,0,0.15);
-  color: #ff6a00;
-  border: 1px solid rgba(255,90,0,0.45);
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.dot.gps { background: #ffb300; }
-.dot.double { background: #ff6a00; }
-
 /* ===== POI BUTTONS ===== */
 .poibtns {
   margin-top: 18px;
@@ -180,7 +142,6 @@ body {
         <div class="title">Kék Duna túra</div>
         <div class="subtitle">Főoldal</div>
       </div>
-      <!-- DAY01 GOMB SZÁNDÉKOSAN TÖRÖLVE -->
     </div>
   </div>
 
@@ -203,18 +164,8 @@ body {
               <div class="poi-title">DAY01 – Fertő tó és Wachau</div>
               <div class="coords">6 pont, kemping Rossatz</div>
             </div>
-
-            <div class="badges">
-              <span class="badge gps">
-                <span class="dot gps"></span> GPS mérés
-              </span>
-              <span class="badge double">
-                <span class="dot double"></span> Dupla mérés jelzés
-              </span>
-            </div>
           </div>
 
-          <!-- EZ MARAD, JÓ ÍGY -->
           <div class="poibtns">
             <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
           </div>
