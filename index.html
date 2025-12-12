@@ -7,15 +7,11 @@
   <link rel="stylesheet" href="../assets/css/style.css?v=4">
 </head>
 
-<body class="day01"
-  style="
-    background:
-      linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.70)),
-      url('images/Durnstein.jpg') center / cover no-repeat fixed;
-  "
->
+<body class="day01 bg-day01">
+
 <div class="page">
 
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -28,44 +24,49 @@
     </div>
   </div>
 
+  <!-- CONTENT -->
   <div class="container">
 
     <div class="card">
       <div class="h1">DAY01 – Fertő tó → Wachau</div>
       <div class="small">
-        A 📍 Mérés gomb megnyomása után a gomb zöldes lesz, jelezve az aktív állapotot.
+        A 📍 Mérés gomb megnyomása után a gomb zöld színű lesz, jelezve az aktív állapotot.
       </div>
     </div>
 
     <div class="grid">
 
+      <!-- POI -->
       <div class="poi" id="p3">
-        <div class="poi-title">3. Leithaprodersdorf – várfal romja</div>
-        <div class="coords">47.947851, 16.409055</div>
+
+        <div class="poi-head">
+          <div>
+            <div class="poi-title">3. Leithaprodersdorf – várfal romja</div>
+            <div class="coords">47.947851, 16.409055</div>
+          </div>
+        </div>
 
         <div class="poibtns">
           <a class="btn btn-accent" href="p3.html">Részletek</a>
-
-          <button
-            class="btn btn-measure"
-            data-measure="p3">
-            📍 Mérés
-          </button>
+          <button class="btn btn-measure" data-measure="p3">📍 Mérés</button>
         </div>
 
-        <img class="inline-image" src="images/Leithaprodersdorf.jpg" alt="">
+        <img class="inline-image" src="images/Leithaprodersdorf.jpg" alt="Leithaprodersdorf várfal romja">
+
       </div>
+      <!-- /POI -->
 
     </div>
-
   </div>
 </div>
 
+<!-- JS -->
 <script src="../assets/js/gps.js?v=2"></script>
+
 <script>
 document.querySelectorAll("[data-measure]").forEach(btn=>{
   btn.addEventListener("click", ()=>{
-    btn.classList.add("active");
+    btn.classList.toggle("active");
   });
 });
 </script>
