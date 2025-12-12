@@ -3,54 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kék Duna túra</title>
- <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <title>DAY01 lista nézet</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=3">
 </head>
-<body>
+
+<body class="day01">
 <div class="page">
+
   <div class="topbar">
     <div class="inner">
       <div class="brand">
         <div class="title">Kék Duna túra</div>
-        <div class="subtitle">Főoldal</div>
+        <div class="subtitle">DAY01 lista nézet</div>
       </div>
       <div class="btnrow">
-        <a class="btn btn-accent" href="day01/index.html">DAY01 lista</a>
+        <a class="btn" href="../index.html">🏠 Főoldal</a>
       </div>
     </div>
   </div>
 
   <div class="container">
+
     <div class="card">
-      <div class="h1">Útiterv</div>
-      <div class="p">Itt a napok belépő oldala van. Minden napon belül van lista nézet, és minden helyszínnek külön oldala.</div>
-      <div class="notice">
-        Képek helye: <b>day01/images</b><br>
-        A projekt ezekkel a fájlnevekkel számol: Durnstein.jpg, fertoto.jpg, Kismarton.jpg, KremsanderDonau.jpg, Leithaprodersdorf.jpg, WachauCampingRossatz.jpg
+      <div class="h1">DAY01 – Fertő tó → Wachau</div>
+      <div class="small">
+        A 📍 Mérés gomb megnyomása után a gomb zöldes lesz, jelezve az aktív állapotot.
       </div>
+    </div>
 
-      <div style="height:12px"></div>
+    <div class="grid">
 
-      <div class="grid">
-        <div class="poi">
-          <div class="poi-head">
-            <div>
-              <div class="poi-title">DAY01 Fertő tó és Wachau</div>
-              <div class="coords">6 pont, kemping Rossatz</div>
-            </div>
-            <div class="badges">
-              <span class="badge"><span class="dot warn"></span> GPS mérés</span>
-              <span class="badge"><span class="dot warn"></span> Dupla mérés jelzés</span>
-            </div>
-          </div>
-          <div class="poibtns">
-            <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
-          </div>
+      <!-- PÉLDA EGY PONTRA -->
+      <div class="poi" id="p3">
+        <div class="poi-title">3. Leithaprodersdorf – várfal romja</div>
+        <div class="coords">47.947851, 16.409055</div>
+
+        <div class="poibtns">
+          <a class="btn btn-accent" href="p3.html">Részletek</a>
+
+          <button
+            class="btn btn-measure"
+            data-measure="p3">
+            📍 Mérés
+          </button>
         </div>
+
+        <img class="inline-image" src="images/Leithaprodersdorf.jpg" alt="">
       </div>
 
     </div>
+
   </div>
 </div>
+
+<script src="../assets/js/gps.js?v=2"></script>
+<script>
+/* ✅ gomb színváltás mérés után */
+document.querySelectorAll("[data-measure]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    btn.classList.add("active");
+  });
+});
+</script>
+
 </body>
 </html>
