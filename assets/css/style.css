@@ -23,6 +23,13 @@ body{
   line-height:1.55;
 }
 
+/* ===== NAPI HÁTTÉR ===== */
+body.bg-day01{
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+    url('../../day01/images/Durnstein.jpg') center / cover no-repeat fixed;
+}
+
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
@@ -32,7 +39,7 @@ a:hover{ text-decoration:underline; }
   flex-direction:column;
 }
 
-/* ===== FEJLÉC (NEM FIX) ===== */
+/* ===== FEJLÉC ===== */
 .topbar{
   position:relative;
   background:rgba(20,20,20,0.78);
@@ -91,7 +98,7 @@ a:hover{ text-decoration:underline; }
   color:#fff;
 }
 
-/* Mérés – kisebb */
+/* ===== MÉRÉS GOMB ===== */
 .btn-measure{
   padding:8px 10px;
   font-size:13px;
@@ -100,8 +107,8 @@ a:hover{ text-decoration:underline; }
 }
 
 .btn-measure.active{
-  background:rgba(59,209,111,0.25);
-  border-color:rgba(59,209,111,0.6);
+  background:rgba(59,209,111,0.28);
+  border-color:rgba(59,209,111,0.65);
   color:#eafff0;
 }
 
@@ -143,6 +150,12 @@ a:hover{ text-decoration:underline; }
   border:1px solid var(--border);
   border-radius:14px;
   padding:14px;
+}
+
+.poi-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .poi-title{
