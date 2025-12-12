@@ -32,7 +32,7 @@ a:hover{ text-decoration:underline; }
   flex-direction:column;
 }
 
-/* 🔴 NEM FIX FEJLÉC */
+/* ===== FEJLÉC – NEM FIX ===== */
 .topbar{
   position:relative;
   background:rgba(20,20,20,0.78);
@@ -55,11 +55,13 @@ a:hover{ text-decoration:underline; }
   color:var(--accent);
   font-size:18px;
 }
+
 .brand .subtitle{
   font-size:12px;
   color:var(--muted);
 }
 
+/* ===== GOMBOK ===== */
 .btnrow{
   display:flex;
   gap:10px;
@@ -89,7 +91,7 @@ a:hover{ text-decoration:underline; }
   color:#fff;
 }
 
-/* 🔹 Mérés – kisebb, akció jellegű */
+/* Mérés – kisebb */
 .btn-measure{
   padding:8px 10px;
   font-size:13px;
@@ -97,13 +99,14 @@ a:hover{ text-decoration:underline; }
   background:rgba(255,255,255,0.12);
 }
 
-/* ✅ mérés UTÁN aktív állapot */
+/* Mérés aktív állapot */
 .btn-measure.active{
   background:rgba(59,209,111,0.25);
   border-color:rgba(59,209,111,0.6);
   color:#eafff0;
 }
 
+/* ===== LAYOUT ===== */
 .container{
   max-width:980px;
   margin:0 auto;
@@ -135,6 +138,7 @@ a:hover{ text-decoration:underline; }
   gap:14px;
 }
 
+/* ===== POI ===== */
 .poi{
   background:var(--panel2);
   border:1px solid var(--border);
@@ -160,16 +164,16 @@ a:hover{ text-decoration:underline; }
   align-items:center;
 }
 
-.inline-image{
+/* ===== KÉPEK ===== */
+.inline-image,
+.hero-image{
   width:100%;
   border-radius:14px;
   margin-top:12px;
   border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 10px 22px rgba(0,0,0,0.30);
 }
 
-body.day01{
-  background:
-    linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.70)),
-    url("images/Durnstein.jpg") center / cover no-repeat fixed,
-    var(--bg);
-}
+/* ===== DAY01 HÁTTÉR – BIZTONSÁGOS ===== */
+/* A háttérképet a HTML adja meg inline style-ban,
+   így NINCS CSS-ben törhető relatív útvonal */
