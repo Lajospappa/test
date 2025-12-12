@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DAY01 lista nézet</title>
-  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
 
   <!-- DAY01 háttér -->
   <style>
@@ -17,6 +18,7 @@
 <body class="day01">
 <div class="page">
 
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -30,16 +32,19 @@
     </div>
   </div>
 
+  <!-- CONTENT -->
   <div class="container">
+
     <div class="card">
-      <div class="h1">DAY01 Fertő tó és Wachau</div>
+      <div class="h1">DAY01 – Fertő tó és Wachau</div>
       <div class="small">
-        A mérés gomb duplán értelmezett. Első mérés eltárolja a távolságot.
+        A mérés gomb duplán értelmezett.  
+        Első mérés eltárolja a távolságot.  
         Második mérés jelzi, hogy közeledsz vagy távolodsz.
       </div>
       <div class="notice">
         Ha a böngésző nem kér helymeghatározási engedélyt, akkor korábban már
-        engedélyezve lett, vagy tiltva van. Motoros módban érdemes engedélyezni.
+        engedélyezve lett vagy tiltva van. Motoros módban érdemes engedélyezni.
       </div>
     </div>
 
@@ -47,7 +52,7 @@
 
     <div class="grid" id="poiList">
 
-      <!-- p1 -->
+      <!-- P1 -->
       <div class="poi" id="p1">
         <div class="poi-head">
           <div>
@@ -62,24 +67,24 @@
 
         <div class="p">
           A Fertő-tó Európa egyik legkülönlegesebb tava, a kontinens legnyugatibb
-          sztyepptava. Sekély vize és nádasai UNESCO Világörökségi területet alkotnak,
-          az átlagmélység kb egy méter körüli.
+          sztyepptava. Sekély vize és nádasai UNESCO világörökségi területet alkotnak,
+          az átlagmélység kb egy méter. Több mint 300 madárfaj él itt.
         </div>
 
         <div class="poibtns">
           <a class="btn btn-accent" href="p1.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/GJjuWzCPYz76gSss6" target="_blank" rel="noopener">🧭 Navigáció</a>
+          <a class="btn btn-blue" href="https://maps.app.goo.gl/GJjuWzCPYz76gSss6" target="_blank">🧭 Navigáció</a>
           <button class="btn" data-measure="p1">📍 Mérés</button>
         </div>
 
-        <img class="inline-image" src="images/fertoto.jpg" alt="Fertő-tó keleti térség">
+        <img class="inline-image" src="images/fertoto.jpg" alt="Fertő-tó">
       </div>
 
-      <!-- p2 -->
+      <!-- P2 -->
       <div class="poi" id="p2">
         <div class="poi-head">
           <div>
-            <div class="poi-title">2. Eisenstadt Kismarton</div>
+            <div class="poi-title">2. Eisenstadt – Kismarton</div>
             <div class="coords">47.845947, 16.519620</div>
           </div>
           <div class="badges">
@@ -89,33 +94,162 @@
         </div>
 
         <div class="p">
-          Kismarton Burgenland fővárosa, egykori Esterházy birtokközpont.
+          Burgenland fővárosa, egykori Esterházy központ. A barokk kastélyban
+          Joseph Haydn több mint negyven évig dolgozott.
+          1921-ig Magyarországhoz tartozott.
         </div>
 
         <div class="poibtns">
           <a class="btn btn-accent" href="p2.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/NacKH3XWH68AHQge7" target="_blank" rel="noopener">🧭 Navigáció</a>
+          <a class="btn btn-blue" href="https://maps.app.goo.gl/NacKH3XWH68AHQge7" target="_blank">🧭 Navigáció</a>
           <button class="btn" data-measure="p2">📍 Mérés</button>
         </div>
 
-        <img class="inline-image" src="images/Kismarton.jpg" alt="Eisenstadt Kismarton">
+        <img class="inline-image" src="images/Kismarton.jpg" alt="Kismarton">
       </div>
 
-      <!-- a további POI-k változatlanul maradnak -->
+      <!-- P3 -->
+      <div class="poi" id="p3">
+        <div class="poi-head">
+          <div>
+            <div class="poi-title">3. Leithaprodersdorf – várfal rom</div>
+            <div class="coords">47.947851, 16.409055</div>
+          </div>
+          <div class="badges">
+            <span class="badge"><span class="dot warn" data-dot="p3"></span><span data-badgetext="p3">nincs mérés</span></span>
+            <span class="badge"><span class="dot warn"></span><span data-dist="p3">távolság: nincs</span></span>
+          </div>
+        </div>
+
+        <div class="p">
+          Középkori védmű maradványa a határvidéken. A Bécsi-medence
+          irányába vezető átkelőket felügyelte.  
+          Nem térünk be, kb 1 km-es kitérő lenne.
+        </div>
+
+        <div class="poibtns">
+          <a class="btn btn-accent" href="p3.html">Részletek</a>
+          <button class="btn" data-measure="p3">📍 Mérés</button>
+        </div>
+
+        <img class="inline-image" src="images/Leithaprodersdorf.jpg" alt="Leithaprodersdorf">
+      </div>
+
+      <!-- P4 -->
+      <div class="poi" id="p4">
+        <div class="poi-head">
+          <div>
+            <div class="poi-title">4. Krems an der Donau</div>
+            <div class="coords">48.410091, 15.599190</div>
+          </div>
+          <div class="badges">
+            <span class="badge"><span class="dot warn" data-dot="p4"></span><span data-badgetext="p4">nincs mérés</span></span>
+            <span class="badge"><span class="dot warn"></span><span data-dist="p4">távolság: nincs</span></span>
+          </div>
+        </div>
+
+        <div class="p">
+          Több mint ezeréves város, a Wachau keleti kapuja.
+          UNESCO világörökségi terület. A Steiner Tor és a
+          teraszos szőlők ikonikus látványt adnak.
+        </div>
+
+        <div class="poibtns">
+          <a class="btn btn-accent" href="p4.html">Részletek</a>
+          <a class="btn btn-blue" href="https://maps.app.goo.gl/qz672rJoZuLRTnEx6" target="_blank">🧭 Navigáció</a>
+          <button class="btn" data-measure="p4">📍 Mérés</button>
+        </div>
+
+        <img class="inline-image" src="images/KremsanderDonau.jpg" alt="Krems">
+      </div>
+
+      <!-- P5 -->
+      <div class="poi" id="p5">
+        <div class="poi-head">
+          <div>
+            <div class="poi-title">5. Dürnstein – kék templom</div>
+            <div class="coords">48.395521, 15.520062</div>
+          </div>
+          <div class="badges">
+            <span class="badge"><span class="dot warn" data-dot="p5"></span><span data-badgetext="p5">nincs mérés</span></span>
+            <span class="badge"><span class="dot warn"></span><span data-dist="p5">távolság: nincs</span></span>
+          </div>
+        </div>
+
+        <div class="p">
+          A Wachau ikonikus látványa. A kék torony messziről
+          felismerhető, csak elhaladunk mellette,
+          nem állunk meg.
+        </div>
+
+        <div class="poibtns">
+          <a class="btn btn-accent" href="p5.html">Részletek</a>
+          <button class="btn" data-measure="p5">📍 Mérés</button>
+        </div>
+
+        <img class="inline-image" src="images/Durnstein.jpg" alt="Dürnstein">
+      </div>
+
+      <!-- P6 -->
+      <div class="poi" id="p6">
+        <div class="poi-head">
+          <div>
+            <div class="poi-title">6. Wachau Camping Rossatz</div>
+            <div class="coords">48.389414, 15.516214</div>
+          </div>
+          <div class="badges">
+            <span class="badge"><span class="dot warn" data-dot="p6"></span><span data-badgetext="p6">nincs mérés</span></span>
+            <span class="badge"><span class="dot warn"></span><span data-dist="p6">távolság: nincs</span></span>
+          </div>
+        </div>
+
+        <div class="p">
+          Közvetlenül a Duna partján fekvő kemping,
+          szemben Dürnsteinnel. Este gyakran kivilágítják
+          a várromot. Wachauer Marille hazája.
+        </div>
+
+        <div class="poibtns">
+          <a class="btn btn-accent" href="p6.html">Részletek</a>
+          <a class="btn btn-blue" href="https://maps.app.goo.gl/gBB9drgQ9iFeSht98" target="_blank">🧭 Navigáció</a>
+          <button class="btn" data-measure="p6">📍 Mérés</button>
+        </div>
+
+        <img class="inline-image" src="images/WachauCampingRossatz.jpg" alt="Rossatz kemping">
+      </div>
+
     </div>
 
     <div class="card" style="margin-top:14px">
-      <div class="small">Képek mappája: day01/images. A fájlnevek pontosan számítanak.</div>
+      <div class="small">Képek mappája: day01/images — a fájlnevek pontosan számítanak.</div>
     </div>
 
   </div>
 </div>
 
 <script src="../assets/js/gps.js"></script>
+
 <script>
-/* AZ EREDETI JS-ED VÁLTOZATLAN */
+const DAY_ID = "day01";
+const POIS = [
+  {id:"p1",lat:47.660292,lon:16.643593},
+  {id:"p2",lat:47.845947,lon:16.519620},
+  {id:"p3",lat:47.947851,lon:16.409055},
+  {id:"p4",lat:48.410091,lon:15.599190},
+  {id:"p5",lat:48.395521,lon:15.520062},
+  {id:"p6",lat:48.389414,lon:15.516214}
+];
+
+document.querySelectorAll("[data-measure]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    measureToPoi(DAY_ID, POIS.find(p=>p.id===btn.dataset.measure));
+  });
+});
+
+document.getElementById("btnNearest").addEventListener("click",()=>{
+  measureNearest(DAY_ID, POIS);
+});
 </script>
 
 </body>
 </html>
-
