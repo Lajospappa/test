@@ -1,197 +1,213 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kék Duna túra</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kék Duna túra</title>
 
-<style>
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  <style>
+    /* ===== RESET ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ===== BODY + BACKGROUND ===== */
-body {
-  font-family: "Georgia", serif;
-  background: url("day01/images/Alpok.png") center/cover no-repeat fixed;
-  color: #f3f3f3;
-}
+    /* ===== BODY + BACKGROUND ===== */
+    body {
+      font-family: "Georgia", serif;
+      background: url("day01/images/Alpok.png") center/cover no-repeat fixed;
+      color: #f3f3f3;
+    }
 
-/* ===== LAYOUT ===== */
-.page {
-  min-height: 100vh;
-}
+    /* ===== LAYOUT ===== */
+    .page {
+      min-height: 100vh;
+    }
 
-/* ===== TOPBAR ===== */
-.topbar {
-  background: rgba(10,10,10,0.9);
-  border-bottom: 1px solid #333;
-}
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid #333;
+    }
 
-.topbar .inner {
-  max-width: 1100px;
-  margin: auto;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .topbar .inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.brand .title {
-  font-size: 22px;
-  font-weight: bold;
-  color: #ffb300;
-}
+    .brand .title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffb300;
+    }
 
-.brand .subtitle {
-  font-size: 13px;
-  opacity: 0.8;
-}
+    .brand .subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+    }
 
-/* ===== BUTTONS ===== */
-.btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 18px;
-  font-weight: bold;
-  font-size: 14px;
-  transition: background 0.2s ease, transform 0.15s ease;
-}
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
 
-.btn-accent {
-  background: #ffb300;
-  color: #111;
-}
+    .btn-accent {
+      background: #ffb300;
+      color: #111;
+    }
 
-.btn-accent:hover {
-  background: #ffca4d;
-  transform: translateY(-1px);
-}
+    .btn-accent:hover {
+      background: #ffca4d;
+      transform: translateY(-1px);
+    }
 
-/* ===== CONTENT ===== */
-.container {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
+    /* ===== CONTENT ===== */
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
 
-.card {
-  background: rgba(0,0,0,0.75);
-  border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-}
+    .card {
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    }
 
-.h1 {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
+    .h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
 
-.p {
-  line-height: 1.6;
-  opacity: 0.9;
-}
+    .p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
 
-/* ===== GRID ===== */
-.grid {
-  margin-top: 26px;
-}
+    /* ===== GRID ===== */
+    .grid {
+      margin-top: 26px;
+    }
 
-.poi {
-  background: linear-gradient(180deg, #111, #050505);
-  border-radius: 16px;
-  padding: 22px;
-  border: 1px solid #222;
-  margin-bottom: 18px;
-}
+    .poi {
+      background: linear-gradient(180deg, #111, #050505);
+      border-radius: 16px;
+      padding: 22px;
+      border: 1px solid #222;
+      margin-bottom: 18px;
+    }
 
-.poi-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+    .poi-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-.poi-title {
-  font-size: 20px;
-  font-weight: bold;
-}
+    .poi-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.coords {
-  font-size: 14px;
-  opacity: 0.8;
-}
+    .coords {
+      font-size: 14px;
+      opacity: 0.8;
+    }
 
-/* ===== POI BUTTONS ===== */
-.poibtns {
-  margin-top: 18px;
-}
-</style>
+    /* ===== POI BUTTONS ===== */
+    .poibtns {
+      margin-top: 18px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
+  <div class="page">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="inner">
-      <div class="brand">
-        <div class="title">Kék Duna túra</div>
-        <div class="subtitle">Főoldal</div>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="inner">
+        <div class="brand">
+          <div class="title">Kék Duna túra</div>
+          <div class="subtitle">Főoldal</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="card">
+    <!-- CONTENT -->
+    <div class="container">
+      <div class="card">
 
-      <div class="h1">Útiterv</div>
+        <div class="h1">Útiterv</div>
 
-      <div class="p">
-        Itt a napok belépő oldala van. Minden napon belül van lista nézet,
-        és minden helyszínnek külön oldala.
-      </div>
+        <div class="p">
+          Itt a napok belépő oldala van. Minden napon belül van lista nézet,
+          és minden helyszínnek külön oldala.
+        </div>
 
-      <div class="grid">
+        <div class="grid">
 
-        <!-- DAY01 -->
-        <div class="poi">
-          <div class="poi-head">
-            <div>
-              <div class="poi-title">DAY01 – Fertő tó és Wachau</div>
-              <div class="coords">6 pont, kemping Rossatz</div>
+          <!-- DAY01 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">DAY01 – Fertő tó és Wachau</div>
+                <div class="coords">6 pont, kemping Rossatz</div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
             </div>
           </div>
 
-          <div class="poibtns">
-            <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
-          </div>
-        </div>
+          <!-- DAY02 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">DAY02 – Wachau · Salzkammergut · Lofer</div>
+                <div class="coords">9 pont, Camping Mühlleiten</div>
+              </div>
+            </div>
 
-        <!-- DAY02 -->
-        <div class="poi">
-          <div class="poi-head">
-            <div>
-              <div class="poi-title">DAY02 – Wachau · Salzkammergut · Lofer</div>
-              <div class="coords">9 pont, Camping Mühlleiten</div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day02/index.html">Megnyitás</a>
             </div>
           </div>
 
-          <div class="poibtns">
-            <a class="btn btn-accent" href="day02/index.html">Megnyitás</a>
+          <!-- DAY03 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">DAY03 – Berchtesgaden · Tirol · Bajor Alpok · Plansee</div>
+                <div class="coords">26 pont, alpesi nagykör</div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day03/index.html">Megnyitás</a>
+            </div>
           </div>
+
         </div>
 
       </div>
-
     </div>
-  </div>
 
-</div>
+  </div>
 </body>
+
 </html>
