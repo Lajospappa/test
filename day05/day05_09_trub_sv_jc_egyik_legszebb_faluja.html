@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY05 9. Trub – Svájc egyik legszebb faluja</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY05_09_Trub__Schallenberg.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY05 9. Trub – Svájc egyik legszebb faluja</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">9. Trub – Svájc egyik legszebb faluja</div>
+                <div class="small">46.94435390696818, 7.883915442836927</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY05_09_Trub__Schallenberg.jpg" alt="Trub – Svájc egyik legszebb faluja">
+
+<div class="p">
+                    <b>Leírás:</b> Trub nem a drága luxusról, hanem az érintetlen, autentikus vidéki életről híres. A települést hatalmas, muskátlikkal díszített, fafaragásos emmentáli parasztházak jellemzik, amelyek között motorozni is különleges élmény. A falu hangulata annyira magával ragadó, hogy itt forgatták a svájciak egyik kedvenc filmjét (Die Herbstzeitlosen), ami országos hírnevet szer adott a településnek.
+                </div>
+
+                <div class="p">
+                    <b>Gasztronómia és Élmény:</b> Mivel az Emmental-völgy szívében jártok, a sajtgyártás megkerülhetetlen: a környező legelőkön láthatjátok azokat a teheneket, amiknek a tejéből a világhírű lyukas Emmentaler AOP sajt készül. A szomszédos Trubschachenben található a Kambly kekszgyár, ahol a látogatók szinte minden terméket végigkóstolhatnak, így tökéletes pihenőpont a túra során.
+                </div>
+
+                <div class="p">
+                    <b>Motoros élmény:</b> A falu a Napf-hegy lábánál fekszik, egy olyan régióban, amely tele van keskeny, kanyargós alsóbbrendű utakkal, meredek domboldalakkal és mély völgyekkel. A kevés autó és a rengeteg kanyar miatt a motorosok paradicsoma, a dombtetőkről (például a Mettlenalp felé) pedig pazar panoráma nyílik a Berni-Alpok havas csúcsaira, az Eigerre, a Mönchre és a Jungfraura.
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://maps.app.goo.gl/nvCqgncxLjnNkAeM8" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Trub – Svájc egyik legszebb faluja",
+            lat: 46.94435390696818,
+            lon: 7.883915442836927
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+</body>
+
+</html>
