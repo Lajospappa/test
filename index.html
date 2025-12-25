@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kék Duna túra</title>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== BODY + BACKGROUND ===== */
+    body {
+      font-family: "Georgia", serif;
+      background: url("day01/images/Alpok.png") center/cover no-repeat fixed;
+      color: #f3f3f3;
+    }
+
+    /* ===== LAYOUT ===== */
+    .page {
+      min-height: 100vh;
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid #333;
+    }
+
+    .topbar .inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand .title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffb300;
+    }
+
+    .brand .subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-accent {
+      background: #ffb300;
+      color: #111;
+    }
+
+    .btn-accent:hover {
+      background: #ffca4d;
+      transform: translateY(-1px);
+    }
+
+    /* ===== CONTENT ===== */
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    /* KÉRT FINOMÍTÁS: ne legyen ennyire sötét, mert a keret is sötétít */
+    .card {
+      background: rgba(0, 0, 0, 0.58);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      margin-top: 26px;
+    }
+
+    .poi {
+      background: linear-gradient(180deg, #111, #050505);
+      border-radius: 16px;
+      padding: 22px;
+      border: 1px solid #222;
+      margin-bottom: 18px;
+    }
+
+    .poi-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .poi-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .coords {
+      font-size: 14px;
+      opacity: 0.85;
+      line-height: 1.45;
+    }
+
+    .coords b {
+      color: #ffb300;
+      font-weight: bold;
+    }
+
+    /* ===== POI BUTTONS ===== */
+    .poibtns {
+      margin-top: 18px;
+    }
+
+    /* ===== TOUR MAP (BOTTOM) ===== */
+    .tourmap-section {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tourmap-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      opacity: 0.95;
+    }
+
+    .tourmap-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #222;
+      background: #050505;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .tourmap-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .tourmap-marker {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ff2b2b;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 18px rgba(255, 43, 43, 0.9);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      display: none;
+    }
+
+    .tourmap-note {
+      margin-top: 12px;
+      font-size: 13px;
+      opacity: 0.85;
+      line-height: 1.45;
+    }
+
+    .tourmap-note b {
+      color: #ffb300;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="inner">
+        <div class="brand">
+          <div class="title">Kék Duna túra</div>
+          <div class="subtitle">Főoldal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container">
+      <div class="card">
+
+        <div class="h1">Útiterv</div>
+
+        <div class="p">
+          Itt a napok belépő oldala van. Minden napon belül van lista nézet,
+          és minden helyszínnek külön oldala.
+        </div>
+
+        <div class="grid">
+
+          <!-- DAY01 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">1. nap · Fertő tó, Kisalföld, Wachau</div>
+                <div class="coords">
+                  <b>353 km</b> · <b>2446 m</b> emelkedés · <b>2366 m</b> ereszkedés<br>
+                  6 megálló, kemping Rossatz<br>
+                  A Fertő tó sekély, nádas világa után a Duna mentén érkezünk a Wachau szőlőteraszai közé, ahol a folyó és a várromok adják a nap hangulatát.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY02 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">2. nap · Wachau, Salzkammergut, Lofer</div>
+                <div class="coords">
+                  <b>357 km</b> · <b>5363 m</b> emelkedés · <b>4976 m</b> ereszkedés<br>
+                  9 megálló, Camping Mühlleiten<br>
+                  Ez a nap látványból építkezik: tóvidék, hegyek, völgyek, és a klasszikus alpesi „képeslap” hangulat Lofer környékén, ahol estére már érezni lehet a magashegyi körök ígéretét.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day02/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY03 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">3. nap · Berchtesgaden, Tirol, Bajor Alpok, Plansee</div>
+                <div class="coords">
+                  <b>280 km</b> · <b>4401 m</b> emelkedés · <b>4012 m</b> ereszkedés<br>
+                  26 megálló, alpesi nagykör<br>
+                  A nap csúcspontja a kontraszt: a Königssee környéki drámai sziklafalak, majd a tiroli völgyek nyitottsága. A Berchtesgaden feletti Kehlsteinhaus, a híres Hitler bunkere, majd a Plansee pedig jutalom a nap végére.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day03/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY04 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">4. nap · Ehrenberg, Neuschwanstein, Bodeni-tó, Donaueschingen</div>
+                <div class="coords">
+                  <b>260 km</b> · <b>3527 m</b> emelkedés · <b>3835 m</b> ereszkedés<br>
+                  11 megálló, Riedsee Camping<br>
+                  Klasszikus „ikon-nap”: Ehrenberg erődrendszere és Neuschwanstein után a Bodeni-tó nagy víztükre áthangol, majd Donaueschingenben elérjük a Duna forrásának városát, ahol a túra fő motívuma kézzelfoghatóvá válik.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day04/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY05 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">5. nap · Donaueschingen, Rajna-vízesés, Aargau, Luzern, Bern, Interlaken</div>
+                <div class="coords">
+                  <b>273 km</b> · <b>3685 m</b> emelkedés · <b>3772 m</b> ereszkedés<br>
+                  13 megálló, JungfrauCamp<br>
+                  Itt jön a víz-nap: a Duna forrásától a Rajna-vízesés brutális energiájáig, majd Svájc belseje. Luzernben a Kapellbrücke története külön sztori, Bern pedig tökéletes „régi város” hangulat Interlaken előtt.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day05/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY06 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">6. nap · Interlaken, Grimsel hágó, Furka hágó, Luzern</div>
+                <div class="coords">
+                  <b>221 km</b> · <b>4850 m</b> emelkedés · <b>5004 m</b> ereszkedés<br>
+                  14 megálló, Camping International Lido Luzern<br>
+                  A nagy hágó-nap: Grimsel és Furka a svájci magashegyi motorozás esszenciája, a Furka pedig filmes helyszín is (007), szóval itt tényleg „mozi” a környezet.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day06/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY07 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">7. nap · Svájci tavaktól Tirolig</div>
+                <div class="coords">
+                  <b>345 km</b> · <b>3354 m</b> emelkedés · <b>3508 m</b> ereszkedés<br>
+                  16 megálló, Campingdorf Hofer (Zillertal)<br>
+                  „Átkötő nap” sok karakterrel: tóparti szakaszok után fokozatosan visszacsúszunk a tiroli völgyekbe. Ha útba esik az Emmentál, itt nem bűn megállni sajtra, mert a táj és az ízek tényleg összetartanak.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day07/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY08 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">8. nap · Tauern, Kelet Tirol, Karintia, Júliai Alpok</div>
+                <div class="coords">
+                  <b>300 km</b> · <b>6950 m</b> emelkedés · <b>6796 m</b> ereszkedés<br>
+                  12 megálló, Camp Špik (Gozd Martuljek)<br>
+                  A túra legkeményebb szintnapja: nagy hegyek, hosszú kapaszkodók, gyors ritmusváltás völgyből hágóra. Estére a Júliai-Alpok már más karakter, sziklásabb, élesebb, „vadabb” hangulat.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day08/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+          <!-- DAY09 -->
+          <div class="poi">
+            <div class="poi-head">
+              <div>
+                <div class="poi-title">9. nap · Hazatérés Karintián és a Dráva mentén</div>
+                <div class="coords">
+                  <b>484 km</b> · <b>3707 m</b> emelkedés · <b>4331 m</b> ereszkedés<br>
+                  5 megálló, a nap utolsó pontja: haza érkezés<br>
+                  Hosszú, fókuszált gurulás: Karintia, Dráva-völgy, Maribor iránya, és a túra „lezáró” érzése. Ilyenkor már minden megálló inkább emlék-rögzítés, mint program, mert a cél a biztos hazaérkezés.
+                </div>
+              </div>
+            </div>
+
+            <div class="poibtns">
+              <a class="btn btn-accent" href="day09/index.html">Megnyitás</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TOUR MAP BOTTOM -->
+        <div class="tourmap-section">
+          <div class="tourmap-title">Teljes túra térkép (aktuális pozíció jelöléssel)</div>
+
+          <div class="tourmap-wrap" id="tourMapWrap">
+            <img class="tourmap-img" id="tourMapImg" src="assets/kekdunateljestura.png" alt="Kék Duna túra teljes térkép">
+            <div class="tourmap-marker" id="tourMarker" aria-hidden="true"></div>
+          </div>
+
+          <div class="tourmap-note" id="tourMapNote">
+            <b>Megjegyzés:</b> a piros jelölő a böngésző helymeghatározása alapján jelenik meg. Ha a helymeghatározás tiltva van, a jelölő nem fog látszani.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const img = document.getElementById("tourMapImg");
+      const marker = document.getElementById("tourMarker");
+      const note = document.getElementById("tourMapNote");
+
+      // Kontroll pontok: (lat, lon) -> (x, y) pixel az eredeti képen (img.naturalWidth, img.naturalHeight koordináta)
+      // Fontos: a px értékeknek az eredeti PNG pixelrácsához kell tartozniuk.
+      const controlPoints = [
+        { name: "Fertő-tó keleti térség", lat: 47.660292, lon: 16.643593, x: 1227, y: 150 },
+        { name: "Rossatz–Arnsdorf, Dunapart 1146,46", lat: 48.395000, lon: 15.581000, x: 854, y: 171 }, // ha van pontos koordináta, írd át
+        { name: "Camping Mühlleiten (Königssee)", lat: 47.600005, lon: 12.989028, x: 854, y: 171 },
+        { name: "Riedsee Camping", lat: 47.936045, lon: 8.533945, x: 394, y: 116 },
+        { name: "Staubbachfall", lat: 46.591057, lon: 7.911357, x: 328, y: 333 },
+        { name: "Luzern látogatás", lat: 47.052786431137804, lon: 8.308887104765335, x: 372, y: 253 },
+        { name: "Campingdorf Hofer, Hippach", lat: 47.228658, lon: 11.886396, x: 743, y: 228 },
+        { name: "Camp Špik, Gozd Martuljek", lat: 46.484774, lon: 13.83819, x: 947, y: 341 }
+      ];
+
+      function clamp(v, min, max) {
+        return Math.max(min, Math.min(max, v));
+      }
+
+      function invert3x3(m) {
+        const a = m[0][0], b = m[0][1], c = m[0][2];
+        const d = m[1][0], e = m[1][1], f = m[1][2];
+        const g = m[2][0], h = m[2][1], i = m[2][2];
+
+        const A = (e * i - f * h);
+        const B = -(d * i - f * g);
+        const C = (d * h - e * g);
+        const D = -(b * i - c * h);
+        const E = (a * i - c * g);
+        const F = -(a * h - b * g);
+        const G = (b * f - c * e);
+        const H = -(a * f - c * d);
+        const I = (a * e - b * d);
+
+        const det = a * A + b * B + c * C;
+        if (Math.abs(det) < 1e-12) return null;
+
+        const invDet = 1 / det;
+        return [
+          [A * invDet, D * invDet, G * invDet],
+          [B * invDet, E * invDet, H * invDet],
+          [C * invDet, F * invDet, I * invDet]
+        ];
+      }
+
+      function mulMat3Vec3(m, v) {
+        return [
+          m[0][0] * v[0] + m[0][1] * v[1] + m[0][2] * v[2],
+          m[1][0] * v[0] + m[1][1] * v[1] + m[1][2] * v[2],
+          m[2][0] * v[0] + m[2][1] * v[1] + m[2][2] * v[2]
+        ];
+      }
+
+      function transpose(A) {
+        const r = A.length, c = A[0].length;
+        const T = [];
+        for (let j = 0; j < c; j++) {
+          const row = [];
+          for (let i = 0; i < r; i++) row.push(A[i][j]);
+          T.push(row);
+        }
+        return T;
+      }
+
+      function mul(A, B) {
+        const r = A.length, k = A[0].length, c = B[0].length;
+        const out = Array.from({ length: r }, () => Array(c).fill(0));
+        for (let i = 0; i < r; i++) {
+          for (let j = 0; j < c; j++) {
+            let s = 0;
+            for (let t = 0; t < k; t++) s += A[i][t] * B[t][j];
+            out[i][j] = s;
+          }
+        }
+        return out;
+      }
+
+      function mulMatVec(A, v) {
+        const r = A.length, c = A[0].length;
+        const out = Array(r).fill(0);
+        for (let i = 0; i < r; i++) {
+          let s = 0;
+          for (let j = 0; j < c; j++) s += A[i][j] * v[j];
+          out[i] = s;
+        }
+        return out;
+      }
+
+      // Affin illesztés: x = p0*lon + p1*lat + p2, y = q0*lon + q1*lat + q2
+      function fitAffine(points) {
+        if (!points || points.length < 3) return null;
+
+        const A = points.map(p => [p.lon, p.lat, 1]);
+        const bx = points.map(p => p.x);
+        const by = points.map(p => p.y);
+
+        const AT = transpose(A);
+        const ATA = mul(AT, A); // 3x3
+        const invATA = invert3x3(ATA);
+        if (!invATA) return null;
+
+        const ATbx = mulMatVec(AT, bx); // 3
+        const ATby = mulMatVec(AT, by); // 3
+
+        const px = mulMat3Vec3(invATA, ATbx); // 3
+        const py = mulMat3Vec3(invATA, ATby); // 3
+
+        return { px, py };
+      }
+
+      function latLonToPixel(lat, lon, model) {
+        const x = model.px[0] * lon + model.px[1] * lat + model.px[2];
+        const y = model.py[0] * lon + model.py[1] * lat + model.py[2];
+        return { x, y };
+      }
+
+      function setMarkerAtImagePixel(x, y) {
+        // Átskálázás az aktuális megjelenített méretre
+        const nw = img.naturalWidth || 1;
+        const nh = img.naturalHeight || 1;
+
+        const rect = img.getBoundingClientRect();
+        const sx = rect.width / nw;
+        const sy = rect.height / nh;
+
+        const left = x * sx;
+        const top = y * sy;
+
+        // Kicsi biztonsági clamp, hogy ne csússzon ki
+        const cl = clamp(left, 0, rect.width);
+        const ct = clamp(top, 0, rect.height);
+
+        marker.style.left = cl + "px";
+        marker.style.top = ct + "px";
+        marker.style.display = "block";
+      }
+
+      function showNote(text) {
+        note.textContent = text;
+      }
+
+      function init() {
+        const model = fitAffine(controlPoints);
+        if (!model) {
+          showNote("A térkép illesztés nem sikerült (kevés vagy hibás kontroll pont).");
+          return;
+        }
+
+        if (!navigator.geolocation) {
+          showNote("A böngésző nem támogatja a helymeghatározást, ezért a piros jelölő nem jelenik meg.");
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+
+            const p = latLonToPixel(lat, lon, model);
+            setMarkerAtImagePixel(p.x, p.y);
+
+            showNote("Aktuális pozíció jelölve a térképen.");
+          },
+          (err) => {
+            let msg = "A helymeghatározás nem elérhető, ezért a piros jelölő nem jelenik meg.";
+            if (err && err.code === 1) msg = "A helymeghatározás tiltva van, ezért a piros jelölő nem jelenik meg.";
+            if (err && err.code === 2) msg = "A helymeghatározás nem érhető el (nincs jel), ezért a piros jelölő nem jelenik meg.";
+            if (err && err.code === 3) msg = "A helymeghatározás időtúllépés miatt nem sikerült, ezért a piros jelölő nem jelenik meg.";
+            showNote(msg);
+          },
+          {
+            enableHighAccuracy: true,
+            maximumAge: 15000,
+            timeout: 12000
+          }
+        );
+      }
+
+      // Biztos: akkor indul, ha a kép naturalWidth már ismert
+      if (img.complete) {
+        init();
+      } else {
+        img.addEventListener("load", init);
+      }
+
+      // Resize esetén újra pozícionálunk
+      let resizeTimer = null;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          if (marker.style.display === "block") {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                  const model = fitAffine(controlPoints);
+                  if (!model) return;
+                  const p = latLonToPixel(pos.coords.latitude, pos.coords.longitude, model);
+                  setMarkerAtImagePixel(p.x, p.y);
+                },
+                () => { },
+                { enableHighAccuracy: false, maximumAge: 15000, timeout: 8000 }
+              );
+            }
+          }
+        }, 250);
+      });
+    })();
+  </script>
+</body>
+
+</html>

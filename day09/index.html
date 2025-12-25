@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DAY09 lista nézet</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    body.day09 {
+      background: url("images/DAY09_01_Hangebrucke_Santa_Lucia.jpg") center / cover no-repeat fixed;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    /* --- SZÁMOZOTT KÉK POI JELÖLŐ (CSAK HOZZÁADVA) --- */
+    .poi-numbered-icon {
+      background: transparent;
+      border: none;
+    }
+
+    .poi-numbered-icon svg {
+      display: block;
+    }
+
+    .poi-pin {
+      width: 25px;
+      height: 41px;
+      background: url("https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png") center / 25px 41px no-repeat;
+      position: relative;
+    }
+
+    .poi-pin-num {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 25px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 12px;
+      color: #ff2b2b;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="day09">
+  <div class="page">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="inner">
+        <div class="brand">
+          <div class="title">Kék Duna túra</div>
+          <div class="subtitle">DAY09 lista nézet</div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="../index.html">🏠 Főoldal</a>
+          <button class="btn btn-accent" id="btnNearest">📌 Legközelebbi pont</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="card">
+        <div class="h1">DAY09 – Hazaút: Karintia → Maribor → Szécsisziget</div>
+        <div class="small">
+          A mérés automatikusan indul oldalnyitáskor, majd 5 mp múlva frissít.
+          A távolságok minden célpontnál frissülnek.
+        </div>
+        <div class="notice" id="gpsNotice" style="display:none">
+          A helymeghatározás nem érhető el. Ellenőrizd az engedélyeket.
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="grid" id="poiList">
+
+        <!-- P1 -->
+        <div class="poi" id="p1">
+          <div class="poi-head">
+            <div class="poi-title">1. Hängebrücke Santa Lucia</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p1"></span><span data-badgetext="p1">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p1">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Modern gyalogos függőhíd a Feistritz patak mély szurdoka felett, az osztrák–szlovén határ közelében.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day09_01_hangebrucke_santa_lucia.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/DoWR7GeGzA2GrsCB9" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY09_01_Hangebrucke_Santa_Lucia.jpg">
+        </div>
+
+        <!-- P2 -->
+        <div class="poi" id="p2">
+          <div class="poi-head">
+            <div class="poi-title">2. Dravogradi vízerőmű</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p2"></span><span data-badgetext="p2">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p2">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A Dráva szlovén szakaszának egyik korai folyami erőműve Dravograd térségében, széles duzzasztott víztükörrel.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day09_02_dravogradi_vizeromu.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/CDX5zVWQCjDPbFYy6" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY09_02_Dravogradi_Vizeromu.jpg">
+        </div>
+
+        <!-- P3 -->
+        <div class="poi" id="p3">
+          <div class="poi-head">
+            <div class="poi-title">3. Öreg szőlőtőke háza, Maribor</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p3"></span><span data-badgetext="p3">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p3">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A Lent városrészben álló ház falán fut a világ legrégebbi, ma is termő szőlőtőkéje (Žametovka), több mint 400 éves.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day09_03_oreg_szolotoke_haza_maribor.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/bZPV3FJbwjDPc4VL9" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY09_03_Oreg_Szolotoke_Haza_Maribor.jpg">
+        </div>
+
+        <!-- P4 -->
+        <div class="poi" id="p4">
+          <div class="poi-head">
+            <div class="poi-title">4. Maribori víztorony</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p4"></span><span data-badgetext="p4">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p4">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Késő középkori erődtorony a Dráva partján, a folyó felőli városvédelem emléke, ma sétány és boros hangulatkörnyezet.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day09_04_maribori_viztorony.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/WPQZaVsVzMKUgZKc7" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY09_04_Maribori_Viztorony.jpg">
+        </div>
+
+        <!-- P5 -->
+        <div class="poi" id="p5">
+          <div class="poi-head">
+            <div class="poi-title">5. Szapáry–Andrássy kastély, Szécsisziget</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p5"></span><span data-badgetext="p5">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p5">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Történelmi nemesi rezidencia a Mura–Kerka vidékén, a túra utolsó, „magyar” zárópontja Szécsiszigeten.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day09_05_szapary_andrassy_kastely_szecsisziget.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/fcUCf1xqopuKYt8t8" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY09_05_Szapary_Andrassy_Kastely_Szecsisziget.jpg">
+        </div>
+
+      </div>
+
+      <!-- TÉRKÉP AZ OLDAL ALJÁN (CSAK HOZZÁADVA) -->
+      <div style="height:16px"></div>
+      <div class="card">
+        <div class="h1">Térkép</div>
+        <div id="map" style="width:100%; height:360px; border-radius:12px;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const POIS = [
+      { id: "p1", lat: 46.638718, lon: 14.825246 },
+      { id: "p2", lat: 46.587165, lon: 15.02394 },
+      { id: "p3", lat: 46.556689702366896, lon: 15.644229764053275 },
+      { id: "p4", lat: 46.5562, lon: 15.6485 },
+      { id: "p5", lat: 46.433673, lon: 16.723171 }
+    ];
+
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function setBadge(id, txt) {
+      const el = document.querySelector(`[data-badgetext="${id}"]`);
+      if (el) el.textContent = txt;
+    }
+
+    function setDist(id, km) {
+      const el = document.querySelector(`[data-dist="${id}"]`);
+      if (el) el.textContent = `távolság: ${km.toFixed(2)} km`;
+    }
+
+    function computeDistances(pos) {
+      const out = {};
+      POIS.forEach(p => {
+        out[p.id] = haversineKm(pos.lat, pos.lon, p.lat, p.lon);
+      });
+      return out;
+    }
+
+    function scrollToPoi(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function getPosOnce() {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          p => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
+          e => reject(e),
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 12000 }
+        );
+      });
+    }
+
+    async function runMeasureCycle(scrollAfter = true) {
+      try {
+        const pos = await getPosOnce();
+        const d = computeDistances(pos);
+        for (const id in d) {
+          setDist(id, d[id]);
+          setBadge(id, "mérve");
+        }
+        if (scrollAfter) {
+          const nearest = Object.keys(d).reduce((a, b) => d[a] < d[b] ? a : b);
+          scrollToPoi(nearest);
+        }
+      } catch (err) {
+        document.getElementById("gpsNotice").style.display = "block";
+      }
+    }
+
+    runMeasureCycle(true);
+    document.getElementById("btnNearest").addEventListener("click", () => runMeasureCycle(true));
+
+    // TÉRKÉP LOGIKA (CSAK HOZZÁADVA) + SZÁMOZOTT KÉK POI-JELÖLŐK
+    let map;
+
+    function blueNumberIcon(n) {
+      const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="46" viewBox="0 0 30 46">
+  <path d="M15 0C8 0 2.5 5.5 2.5 12.5C2.5 23 15 46 15 46C15 46 27.5 23 27.5 12.5C27.5 5.5 22 0 15 0Z"
+        fill="#2A81CB" stroke="rgba(0,0,0,0.35)" stroke-width="1"/>
+  <text x="15" y="18" text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="13" font-weight="800"
+        fill="#ff2b2b" stroke="#ffffff" stroke-width="2" paint-order="stroke">
+    ${n}
+  </text>
+</svg>`;
+
+      return L.divIcon({
+        className: "poi-numbered-icon",
+        html: svg,
+        iconSize: [30, 46],
+        iconAnchor: [15, 46],
+        popupAnchor: [0, -38]
+      });
+    }
+
+    function getPoiTitle(id) {
+      const el = document.querySelector(`#${id} .poi-title`);
+      return el ? el.textContent.trim() : id;
+    }
+
+    function initMap(userPos) {
+      map = L.map("map");
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap"
+      }).addTo(map);
+
+      const bounds = [];
+
+      // POI-k: kék pin + sorszám
+      POIS.forEach(p => {
+        const num = parseInt(String(p.id).replace("p", ""), 10);
+        const safeNum = Number.isFinite(num) ? num : "";
+        const title = getPoiTitle(p.id);
+
+        L.marker([p.lat, p.lon], { icon: blueNumberIcon(safeNum) })
+          .addTo(map)
+          .bindPopup(title);
+
+        bounds.push([p.lat, p.lon]);
+      });
+
+      // Saját helyzet piros jelölővel
+      if (userPos) {
+        const redIcon = L.icon({
+          iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+          shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41]
+        });
+
+        L.marker([userPos.lat, userPos.lon], { icon: redIcon })
+          .addTo(map)
+          .bindPopup("📍 Itt vagyok");
+
+        bounds.push([userPos.lat, userPos.lon]);
+      }
+
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [30, 30] });
+      }
+    }
+
+    getPosOnce()
+      .then(pos => initMap(pos))
+      .catch(() => initMap(null));
+  </script>
+
+</body>
+</html>
