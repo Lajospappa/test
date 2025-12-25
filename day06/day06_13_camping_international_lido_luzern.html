@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY06 13. Camping International Lido Luzern (végállomás)</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY06_13_Camping_International.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY06 13. Camping International Lido Luzern (végállomás)</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">13. Camping International Lido Luzern (végállomás)</div>
+                <div class="small">47.0501073, 8.3389329</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY06_13_Camping_International.jpg" alt="Camping International Lido Luzern (végállomás)">
+
+<div class="p">
+                    <b>Eredeti leírás:</b> Városi kemping közvetlenül a Luzerni-tó partján, nagyon jó bázis a gyalogos városnézéshez.
+                </div>
+
+                <div class="p">
+                    <b>Érdekességek:</b> A kemping a Lidostrasse környékén fekszik, a Lido strand és a Közlekedési Múzeum (Verkehrshaus) szomszédságában. A tóparti sétányon kényelmesen elérhető Luzern óvárosa, ezért motoros nap végén logikus „parkoló és gyalogos üzemmód” váltópont. Erős szezonban előfoglalás jellemzően előny.
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://www.google.com/maps/dir/?api=1&destination=47.0501073,8.3389329" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Camping International Lido Luzern (végállomás)",
+            lat: 47.0501073,
+            lon: 8.3389329
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+
+    <script>
+        /* ===== IMAGE FIX (AUTO FALLBACK) =====
+           Ha a hero / háttér kép fájlneve eltér (kis/nagybetű, .JPG, dupla aláhúzás),
+           akkor több tipikus variánst is megpróbálunk. Amelyik létezik, azt beállítjuk.
+        */
+        (function () {
+            const hero = document.querySelector("img.hero-image");
+            if (!hero) return;
+
+            const srcAttr = hero.getAttribute("src") || "";
+            const srcFile = srcAttr.replace(/^images\//i, "");
+
+            // background-image kinyerése
+            const bgCss = (getComputedStyle(document.body).backgroundImage || "");
+            const m = bgCss.match(/url\(["']?(.+?)["']?\)/i);
+            let bgFile = m && m[1] ? m[1] : "";
+            bgFile = bgFile.replace(/^.*\/images\//i, "").replace(/^images\//i, "");
+
+            const cand = [];
+            const add = (x) => { if (x && !cand.includes(x)) cand.push(x); };
+
+            // alap: amit a fájlban már hivatkozol
+            add(srcFile);
+            add(bgFile);
+
+            // tipikus variációk az alapfájlokból
+            const bases = [srcFile, bgFile].filter(Boolean);
+            const exts = [".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".webp", ".WEBP"];
+
+            bases.forEach(f => {
+                const noExt = f.replace(/\.[^.]+$/i, "");
+                exts.forEach(e => add(noExt + e));
+
+                // dupla aláhúzás / egyszeres
+                add(f.replace(/__/g, "_"));
+                add(f.replace(/_/g, "__"));
+
+                // URL-encode jellegű esetek
+                add(f.replace(/%20/g, "_"));
+            });
+
+            // HTML fájlnévből is képzünk jelölteket (day06_09_xxx -> DAY06_09_xxx.jpg)
+            const htmlName = (location.pathname.split("/").pop() || "").replace(/\.html$/i, "");
+            const dayMatch = (srcFile.match(/^(DAY\d+_\d+)/i) || htmlName.match(/^(day\d+_\d+)/i));
+            const dayPrefix = dayMatch ? dayMatch[1] : "";
+            const dayPrefixUpper = dayPrefix ? dayPrefix.toUpperCase() : "";
+
+            if (dayPrefixUpper) {
+                exts.forEach(e => add(dayPrefixUpper + e));
+
+                const rest = htmlName.replace(/^day\d+_\d+_?/i, "");
+                if (rest) {
+                    const dn = (dayPrefixUpper + "_" + rest).replace(/[^\w]+/g, "_");
+                    exts.forEach(e => add(dn + e));
+                }
+            } else if (htmlName) {
+                const dn = htmlName.replace(/[^\w]+/g, "_");
+                exts.forEach(e => add(dn + e));
+            }
+
+            function apply(file) {
+                hero.src = "images/" + file;
+                document.body.style.backgroundImage = 'url("images/' + file + '")';
+            }
+
+            function tryNext(i) {
+                if (i >= cand.length) return;
+                const file = cand[i];
+                const img = new Image();
+                img.onload = () => apply(file);
+                img.onerror = () => tryNext(i + 1);
+                img.src = "images/" + file;
+            }
+
+            tryNext(0);
+        })();
+    </script>
+
+</body>
+
+</html>
